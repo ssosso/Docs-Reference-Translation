@@ -13,6 +13,6 @@
 
 ## 번역 리스트
 1. Spring Security Reference (4.2.3.RELEASE) - **ing**
-2. Slick User Manual (3.1.1) - **ready**
+2. Slick User Manual (3.1.1) - **ing**
 3. Hyperledger fabric document (v1.3) - **ready**
 4. X.509 wikipedia - **ing**
