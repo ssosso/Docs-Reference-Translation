@@ -9,3 +9,10 @@
 
 ### 번역 요청하는 방법
 - issues에서 번역 요청 템플릿 사용하여 이슈 제기 해주세요.
+
+
+## 번역 리스트
+1. Spring Security Reference (4.2.3.RELEASE) - **ing**
+2. Slick User Manual (3.1.1) - **ready**
+3. Hyperledger fabric document (v1.3) - **ready**
+4. X.509 wikipedia - **ing**
