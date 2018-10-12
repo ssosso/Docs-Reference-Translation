@@ -61,19 +61,23 @@ X.509는 1988년 7월 3일에 최초로 발표되었으며, [X.500](https://en.w
 ###	인증서 파일 확장자
 ## 인증서 체인과 상호인증
 ###	예시 1: 두 PKI간에 최상위 인증기관(CA) 수준의 상호인증
-<center>
+<p align="center">
   <img src=".images/350px-Cross-certification_diagram.svg.png"/>
   <br/>
   <b>예시 1: 두 PKI간의 상호인증</b>
-</center>
+</p>
+
 ###	예시 2: CA 인증서 갱신
-<center>
+<p align="center">
   <img src=".images/CA_certificate_renewal.png"/>
   <br/>
   <b>예시 2: CA 인증서 갱신</b>
-</center>
+</p>
+
 ## 샘플 X.509 인증서
+
 ###	최종 엔티티 인증서
+
 ```
 Certificate:
     Data:
@@ -136,6 +140,7 @@ Issuer | C=BE, O=GlobalSign nv-sa, CN=GlobalSign Organization Validation CA - SH
 **Authority Key Identifier** | **96:DE:61:F1:BD:1C:16:29:53:1C:C0:CC:7D:3B:83:00:40:E6:1A:7C**
 
 ###	중간 인증서
+
 ```
 Certificate:
     Data:
@@ -181,7 +186,9 @@ Certificate:
          46:2a:ee:5e:bd:ae:01:60:37:31:11:86:71:74:b6:46:49:c8:
          ...
 ```
+
 ###	루트 인증서
+
 ```
 Certificate:[14]
     Data:
@@ -212,15 +219,25 @@ Certificate:[14]
          d6:73:e7:7c:4f:76:d0:8d:bf:ec:ba:a2:be:34:c5:28:32:b5:
          ...
 ```
+
 ## 보안
+
 ###	아키텍처 취약점
+
 ###	인증기관 관련 문제
+
 ###	구현 이슈
+
 ###	암호화 취약점
+
 #### 암호화 취약점에 대한 완화책
+
 ## X.509에 대한 PKI 표준
+
 ## PKIX 실무 그룹
+
 ## X.509 인증서를 사용하는 주요 프로토콜과 표준
+
 ## 기타 참고
 - [Abstract Syntax Notation One](https://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One)
 - [Certificate policy](https://en.wikipedia.org/wiki/Certificate_policy)
@@ -231,6 +248,9 @@ Certificate:[14]
 - [Public-key cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography)
 - [Time stamp protocol](https://en.wikipedia.org/wiki/Time_stamp_protocol)
 - [Trusted timestamping](https://en.wikipedia.org/wiki/Trusted_timestamping)
+
 ## 참고 문헌
+
 ##### 1. <sup id="footnote1">_[a](#footkey1-1) [b]()_</sup> [RFC 4158](https://tools.ietf.org/html/rfc4158)
+
 ## 외부 링크
