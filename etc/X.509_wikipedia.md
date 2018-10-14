@@ -32,8 +32,7 @@ X.509는 [국제 통신 연합](https://en.wikipedia.org/wiki/International_Tele
 11. [외부 링크](#외부-링크)
 
 ## 역사와 사용법
-X.509는 1988년 7월 3일에 최초로 발표되었으며, [X.500](https://en.wikipedia.org/wiki/X.500) 표준과 연계되어 시작하였다.
-
+X.509는 1988년 7월 3일에 최초로 발표되었으며, [X.500](https://en.wikipedia.org/wiki/X.500) 표준과 연계되어 시작하였다. 이는 인증서 발급에 대한 [인증기관](https://en.wikipedia.org/wiki/Certificate_authority)(CA)의 엄격한 계층구조의 시스템을 가정한다. 이것은 [PGP](https://en.wikipedia.org/wiki/Pretty_Good_Privacy)와 같은 [신뢰 웹<sup>web of trust</sup>](https://en.wikipedia.org/wiki/Web_of_trust) 모델과 대조된다. 신뢰 웹 모델의 경우 (특수한 CA뿐만 아니라) 누구든 서명할 수 있고 그에 따라 다른 사람의 중요 인증서의 유효성도 누구든 검증할 수 있다. X.509의 버전3은 [브릿지<sup>bridge</sup>](https://en.wikipedia.org/wiki/Network_bridge)와 [메시<sup>meshe</sup>](https://en.wikipedia.org/wiki/Mesh_network) <sup id="footkey1-2">[[1]](#footnote1)</sup> 같은 다른 토폴로지들을 지원하는 유연성을 가지고 있다. 이것은 피어 투 피어<sup>peer-to-peer</sup>에서나 [OpenPGP](https://en.wikipedia.org/wiki/OpenPGP) 같은 신뢰 웹에서 사용할 수 있지만<sup>[[인용문 필요]](https://en.wikipedia.org/wiki/Wikipedia:Citation_needed)</sup> 2004년 현재로써는 거의 사용되지 않고 있다. X.500 시스템은 국가 독자성 정보 공유 조약 이행 목적을 위해 독립 국가들에 의해서만 구현되었고, IETF의 공개키 기반 구조<sup>Public-key Infrastructure</sup>(X.509), 즉 PKIX, 실무 그룹은 이 표준을 더 유연한 인터넷 조직에 적용했다. 실제로 _X.509 인증서_라는 용어는 일반적으로 [RFC 5280](https://tools.ietf.org/html/rfc5280)에 기술된 일명 PKIX<sup>_Public Key Infrastructure (X.509)_</sup>라는 X.509 v3인증서 표준의 IETF의 PKIX 인증서와 [CRL](https://en.wikipedia.org/wiki/Revocation_list) 프로필을 말한다.<sup>[[인용문 필요]](https://en.wikipedia.org/wiki/Wikipedia:Citation_needed)</sup>
 
 ## 인증서
 
@@ -251,6 +250,6 @@ Certificate:[14]
 
 ## 참고 문헌
 
-##### 1. <sup id="footnote1">_[a](#footkey1-1) [b]()_</sup> [RFC 4158](https://tools.ietf.org/html/rfc4158)
+##### 1. <sup id="footnote1">_[a](#footkey1-1) [b](#footkey1-2)_</sup> [RFC 4158](https://tools.ietf.org/html/rfc4158)
 
 ## 외부 링크
