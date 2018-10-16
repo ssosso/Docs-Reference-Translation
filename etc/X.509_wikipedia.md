@@ -37,7 +37,7 @@ X.509는 1988년 7월 3일에 최초로 발표되었으며, [X.500](https://en.w
 ## 인증서
 X.509 시스템에서 서명한 인증서를 원하는 조직은 [인증서 서명 요청(CSR, certificate signing request)](https://en.wikipedia.org/wiki/Certificate_signing_request)을 통해서 인증서를 요청할 수 있다.
 
-이를 위해서는 일단 한나의 [키 쌍](https://en.wikipedia.org/wiki/Key_pair)을 생성하고 [개인키](https://en.wikipedia.org/wiki/Private-key_cryptography)는 공개하지 않고 이것으로 CSR을 서명한다. 이 CSR은 신청자를 식별할 수 있는 정보와 CSR의 서명을 검증하는 데 사용되는 신청자의 [공개키](https://en.wikipedia.org/wiki/Public-key_cryptography)를 포함한다. 인증서라고 할 수 있는 [고유 이름(DN, Distinguished Name)](https://en.wikipedia.org/wiki/Distinguished_Name)도 포함한다. CSR은 인증기관이 요구하는 다른 자격증명 또는 신원 증을 수반할 수 있다.
+이를 위해서는 일단 한나의 [키 쌍](https://en.wikipedia.org/wiki/Key_pair)을 생성하고 [개인키](https://en.wikipedia.org/wiki/Private-key_cryptography)는 공개하지 않고 이것으로 CSR을 서명한다. 이 CSR은 신청자를 식별할 수 있는 정보와 CSR의 서명을 검증하는 데 사용되는 신청자의 [공개키](https://en.wikipedia.org/wiki/Public-key_cryptography)를 포함한다. 인증서라고 할 수 있는 [고유 이름(DN, Distinguished Name)](https://en.wikipedia.org/wiki/Distinguished_Name)도 포함한다. CSR은 인증기관이 요구하는 다른 자격증명 또는 신원 증명을 수반할 수 있다.
 
 [인증기관](https://en.wikipedia.org/wiki/Certification_authority)은 공개키를 특정 [고유 이름(DN)](https://en.wikipedia.org/wiki/Distinguished_Name#Directory_structure)에 바인딩하는 인증서를 발급한다.
 
