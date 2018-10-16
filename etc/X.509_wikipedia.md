@@ -32,11 +32,24 @@ X.509는 [국제 통신 연합](https://en.wikipedia.org/wiki/International_Tele
 11. [외부 링크](#외부-링크)
 
 ## 역사와 사용법
-X.509는 1988년 7월 3일에 최초로 발표되었으며, [X.500](https://en.wikipedia.org/wiki/X.500) 표준과 연계되어 시작하였다. 이는 인증서 발급에 대한 [인증기관](https://en.wikipedia.org/wiki/Certificate_authority)(CA)의 엄격한 계층구조의 시스템을 가정한다. 이것은 [PGP](https://en.wikipedia.org/wiki/Pretty_Good_Privacy)와 같은 [신뢰 웹<sup>web of trust</sup>](https://en.wikipedia.org/wiki/Web_of_trust) 모델과 대조된다. 신뢰 웹 모델의 경우 (특수한 CA뿐만 아니라) 누구든 서명할 수 있고 그에 따라 다른 사람의 중요 인증서의 유효성도 누구든 검증할 수 있다. X.509의 버전3은 [브릿지<sup>bridge</sup>](https://en.wikipedia.org/wiki/Network_bridge)와 [메시<sup>meshe</sup>](https://en.wikipedia.org/wiki/Mesh_network) <sup id="footkey1-2">[[1]](#footnote1)</sup> 같은 다른 토폴로지들을 지원하는 유연성을 가지고 있다. 이것은 피어 투 피어<sup>peer-to-peer</sup>에서나 [OpenPGP](https://en.wikipedia.org/wiki/OpenPGP) 같은 신뢰 웹에서 사용할 수 있지만<sup>[[인용문 필요]](https://en.wikipedia.org/wiki/Wikipedia:Citation_needed)</sup> 2004년 현재로써는 거의 사용되지 않고 있다. X.500 시스템은 국가 독자성 정보 공유 조약 이행 목적을 위해 독립 국가들에 의해서만 구현되었고, IETF의 공개키 기반 구조<sup>Public-key Infrastructure</sup>(X.509), 즉 PKIX, 실무 그룹은 이 표준을 더 유연한 인터넷 조직에 적용했다. 실제로 _X.509 인증서_라는 용어는 일반적으로 [RFC 5280](https://tools.ietf.org/html/rfc5280)에 기술된 일명 PKIX<sup>_Public Key Infrastructure (X.509)_</sup>라는 X.509 v3인증서 표준의 IETF의 PKIX 인증서와 [CRL](https://en.wikipedia.org/wiki/Revocation_list) 프로필을 말한다.<sup>[[인용문 필요]](https://en.wikipedia.org/wiki/Wikipedia:Citation_needed)</sup>
+X.509는 1988년 7월 3일에 최초로 발표되었으며, [X.500](https://en.wikipedia.org/wiki/X.500) 표준과 연계되어 시작하였다. 이는 인증서 발급에 대한 [인증기관](https://en.wikipedia.org/wiki/Certificate_authority)(CA)의 엄격한 계층구조의 시스템을 가정한다. 이것은 [PGP](https://en.wikipedia.org/wiki/Pretty_Good_Privacy)와 같은 [신뢰 웹<sup>web of trust</sup>](https://en.wikipedia.org/wiki/Web_of_trust) 모델과 대조된다. 신뢰 웹 모델의 경우 (특수한 CA뿐만 아니라) 누구든 서명할 수 있고 그에 따라 다른 사람의 중요 인증서의 유효성도 누구든 검증할 수 있다. X.509의 버전3은 [브릿지<sup>bridge</sup>](https://en.wikipedia.org/wiki/Network_bridge)와 [메시<sup>meshe</sup>](https://en.wikipedia.org/wiki/Mesh_network) <sup id="footkey1-2">[[1]](#footnote1)</sup> 같은 다른 토폴로지들을 지원하는 유연성을 가지고 있다. 이것은 피어 투 피어<sup>peer-to-peer</sup>에서나 [OpenPGP](https://en.wikipedia.org/wiki/OpenPGP) 같은 신뢰 웹에서 사용할 수 있지만<sup>[[인용문 필요]](https://en.wikipedia.org/wiki/Wikipedia:Citation_needed)</sup> 2004년 현재로써는 거의 사용되지 않고 있다. X.500 시스템은 국가 독자성 정보 공유 조약 이행 목적을 위해 독립 국가들에 의해서만 구현되었고, IETF의 공개키 기반 구조<sup>Public-key Infrastructure</sup>(X.509), 즉 PKIX, 실무 그룹은 이 표준을 더 유연한 인터넷 조직에 적용했다. 실제로 <i>X.509 인증서</i>라는 용어는 일반적으로 [RFC 5280](https://tools.ietf.org/html/rfc5280)에 기술된 일명 PKIX<sup>_Public Key Infrastructure (X.509)_</sup>라는 X.509 v3인증서 표준의 IETF의 PKIX 인증서와 [CRL](https://en.wikipedia.org/wiki/Revocation_list) 프로필을 말한다.<sup>[[인용문 필요]](https://en.wikipedia.org/wiki/Wikipedia:Citation_needed)</sup>
 
 ## 인증서
+X.509 시스템에서 서명한 인증서를 원하는 조직은 [인증서 서명 요청(CSR, certificate signing request)](https://en.wikipedia.org/wiki/Certificate_signing_request)을 통해서 인증서를 요청할 수 있다.
+
+이를 위해서는 일단 한나의 [키 쌍](https://en.wikipedia.org/wiki/Key_pair)을 생성하고 [개인키](https://en.wikipedia.org/wiki/Private-key_cryptography)는 공개하지 않고 이것으로 CSR을 서명한다. 이 CSR은 신청자를 식별할 수 있는 정보와 CSR의 서명을 검증하는 데 사용되는 신청자의 [공개키](https://en.wikipedia.org/wiki/Public-key_cryptography)를 포함한다. 인증서라고 할 수 있는 [고유 이름(DN, Distinguished Name)](https://en.wikipedia.org/wiki/Distinguished_Name)도 포함한다. CSR은 인증기관이 요구하는 다른 자격증명 또는 신원 증을 수반할 수 있다.
+
+[인증기관](https://en.wikipedia.org/wiki/Certification_authority)은 공개키를 특정 [고유 이름(DN)](https://en.wikipedia.org/wiki/Distinguished_Name#Directory_structure)에 바인딩하는 인증서를 발급한다.
+
+한 조직의 신뢰할 수 있는 [루트 인증서](https://en.wikipedia.org/wiki/Root_certificate)는 모든 임직원들에게 배포될 수 있으며 그러므로 그들은 회사 PKI시스템을 사용할 수 있게 된다.<sup>[[인용문 필요]](https://en.wikipedia.org/wiki/Wikipedia:Citation_needed)</sup> Internet Explorer, Firefox, Opera, Safari, Chrome과 같은 브라우저들은 사전 설정된 루트인증서 세트와 함께 제공되며, 주요 인증기관의 [SSL](https://en.wikipedia.org/wiki/Secure_Sockets_Layer) 인증서가 즉시 작동한다. 사실상 브라우저의 개발자들은 브라우저 사용자들을 위해 어떤 CA가 믿을 만한지 결정해야 한다.<sup>[[인용문 필요]](https://en.wikipedia.org/wiki/Wikipedia:Citation_needed)</sup> 예를 들어, Firefox는 포함하고 있는 CA의 목록을 CSV 또는 HTML 파일로 제공한다.<sup>[[2]](#footnote2)</sup>
+
+또한 X.509와 [RFC 5280](https://tools.ietf.org/html/rfc5280)은 인증서 [폐기 목록](https://en.wikipedia.org/wiki/Revocation_list)(CRL, certificate revocation list) 구현을 위한 표준도 포함하고 있다. 인증서의 유효성을 검증하는 또 하나의 [IETF](https://en.wikipedia.org/wiki/IETF) 승인 방법은 [온라인 인증서 상태 프로토콜(OCSP, Online Certificate Status Protocol)](https://en.wikipedia.org/wiki/Online_Certificate_Status_Protocol)이다. Firefox 3는 적어도 Vista이상의 Windows 버전에서 기본적으로 OCSP 검증을 진행한다.<sup>[[3]](#footnote3)</sup>
 
 ###	인증서 구조
+표준에서 예상하는 구조는 [추상 구문 표기법(ASN.1, Abstract Syntax Notation One)](https://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One)이라는 형식적인 언어로 표현되어 있다.
+
+X.509 v3 [전자 인증서](https://en.wikipedia.org/wiki/Digital_certificate)의 구조는 아래와 같다.
+
 - **인증서** (Certificate)
   - **버전 번호** (Version Number)
   - **시리얼 번호** (Serial Number)
@@ -250,6 +263,8 @@ Certificate:[14]
 
 ## 참고 문헌
 
-##### 1. <sup id="footnote1">_[a](#footkey1-1) [b](#footkey1-2)_</sup> [RFC 4158](https://tools.ietf.org/html/rfc4158)
+1. <sup id="footnote1">_[a](#footkey1-1) [b](#footkey1-2)_</sup> [RFC 4158](https://tools.ietf.org/html/rfc4158)
+2. <sup id="footnote2"></sup>["CA:IncludedCAs - MozillaWiki"](https://wiki.mozilla.org/CA:IncludedCAs). wiki.mozilla.org. Retrieved 2017-01-17.
+3. <sup id="footnote3"></sup>["Bug 110161 - (ocspdefault) enable OCSP by default"](https://bugzilla.mozilla.org/show_bug.cgi?id=110161). Retrieved 2016-03-17.
 
 ## 외부 링크
