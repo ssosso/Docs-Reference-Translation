@@ -69,9 +69,55 @@ X.509 v3 [전자 인증서](https://en.wikipedia.org/wiki/Digital_certificate)�
 - **인증서 서명 알고리즘** (Certificate Signature Algorithm)
 - **인증서 서명** (Certificate Signature)
 
-###	인증서의 특정 사용법을 알려주는 확장
+각 확장(Extension)은 중요 표시와 함께 [객체 식별자](https://en.wikipedia.org/wiki/Object_identifier)로 표현된 고유한 ID를 가지며, 이는 값 집합이다. 인증서를 사용하는 시스템은 중요 표시가 되어 있으나 식별할 수 없는 확장이 있는 경우 또는 중요 표기가 되어 있으나 처리할 수 없는 정보를 포함한 경우 해당 인증서를 거부해야 한다. 중요하지 않음 표시가 되어 있는데 식별할 수 없는 확장이라면 이는 무시할 수 있으며, 식별할 수 있다면 처리해야 한다.<sup>[[4]](#footnote4)</sup>
+
+버전 1의 구조는 RFC 1422에 나와 있다.<sup>[[5]](#footnote5)</sup>
+
+ITU-T는 시간이 얼마간 흐른 뒤에도 발급자와 소유자의 이름을 재사용할 수 있게 하기 위해서 버전 2에 발급자와 소유자의 고유 식별자를 도입하였다. 재사용의 예로는 [CA](https://en.wikipedia.org/wiki/Certificate_authority)가 파산하여 그 CA의 이름이 해당 국가의 공개 목록에서 삭제될 경우가 있다. 일정기간 후에 동일한 이름의 다른 CA는 앞선 CA와 관련이 없더라도 등록할 수 있다. 그러나 [IETF](https://en.wikipedia.org/wiki/IETF)는 어떠한 발급자나 소유자의 이름도 재사용하지 않는 것을 권장한다. 그러므로 버전 2는 인터넷에 널리 보급되지 못했다.<sup>[[인용문 필요]](https://en.wikipedia.org/wiki/Wikipedia:Citation_needed)</sup>
+
+확장은 버전 3에 도입되었다. CA는 특정한 용도로만, 이를테면 [전자 객체를 서명하는](https://en.wikipedia.org/wiki/Code_signing) 용도로만, 인증서를 발급하는 데 확장을 사용할 수 있다.
+
+모든 버전에서 시리얼 번호는 특정CA가 발급한 각 인증서마다 고유해야 한다(RFC 5280에 언급되어 있는 바와 같이).
+
+###	인증서의 특정 용법을 알려주는 확장(Extension)
+RFC 5280(그리고 이것의 이전 모델)은 인증서 사용 방법을 나타내는 많은 인증서 확장(Extension)을 정의하고 있다. 대부분의 확장은 joint-iso-ccitt (2) ds (5) id-ce (29) OID의 일부분이다. 4.2.1절에 정의되어 있는 가장 일반적인 내용 중 몇 가지는 아래와 같다.
+
+- 기본적인 제약 { id-ce 19 }<sup>[[6]](#footnote6)</sup>는 인증서가 CA에 속하는지 나타내는 데 사용한다.
+- 키 사용법인 { id-ce 15 }<sup>[[7]](#footnote7)</sup>는 인증서에 포함된 공개키를 사용하여 수행할 수 있는 암호화 작업을 지정하는 비트맵을 제공한다. 예를 들어 해당 키는 서명에는 사용되지만 암호문에는 사용되지 않아야 함을 나타낼 수 있다.
+- 확장한 키 사용법인 { id-ce 37 }<sup>[[8]](#footnote8)</sup>은 인증서가 포함하고 있는 공개키의 목적을 나타내기 위해 일반적으로 말단 인증서에서 사용된다. 이 확장(Extension)은 OID 목록을 포함하며 각 OID는 허용할 수 있는 사용을 나타낸다. 예를 들어 { id-pkix 3 1 }은 TLS/SSL 연결에서 서버측이 키를 사용할 수 있음을 나타내며, { id-pkix 3 4 }는 전자 메일 보안에 키를 사용할 수 있음을 나타낸다.
+
+일반적으로 인증서에 사용을 제한하는 확장(Extension)이 여러 개 있는 경우, 적합하게 사용하도록 모든 제한을 만족해야 한다. RFC 5280에는 keyUsage와 extendedKeyUsage를 포함하는 인증서의 구체적인 예시가 나와 있다. 이런 경우, 두 확장은 모두 처리 되어야 하며, 인증서는 두 가지 확장을 만족하는 경우에만 사용할 수 있다. 예를 들어 [NSS](https://en.wikipedia.org/wiki/Network_Security_Services)는 두 가지 확장을 모두 사용하여 인증서의 용법을 지정하고 있다.<sup>[[9]](#footnote9)</sup>
+
 ###	인증서 파일 확장자
+X.509 인증서에는 일반적으로 사용되는 몇가지 파일 확장자가 있다. 아쉽게도 이러한 확장자 중 일부는 개인키와 같은 다른 데이터에도 사용되고 있다.
+- .pem - ([Privacy-enhanced Electronic Mail, 강화된 개인정보 보호 전자 메일](https://en.wikipedia.org/wiki/Privacy-enhanced_Electronic_Mail)) [Base64](https://en.wikipedia.org/wiki/Base64)로 인코딩된 [DER](https://en.wikipedia.org/wiki/Distinguished_Encoding_Rules) 인증서이며, "-----BEGIN CERTIFICATE-----"와 "-----END CERTIFICATE-----" 문자열로 앞뒤가 감싸져 있다.
+- .cer, .crt, .der - 보통 사용되는 바이너리 DER형식, 그렇지만 Base64로 인코딩된 인증서도 일반적이다.
+- .p7b, .p7c - 데이터 없이 인증서와 [CRL](https://en.wikipedia.org/wiki/Revocation_list)만 있는 [PKCS#7](https://en.wikipedia.org/wiki/PKCS7)의 SignedData 구조
+- .p12 - [PKCS#12](https://en.wikipedia.org/wiki/PKCS12), 인증서(공개키)와 (암호로 보호된)[개인키](https://en.wikipedia.org/wiki/Private_key)를 포함할 수 있다.
+- .pfx - PFX, PKCS#12의 이전 모델([IIS](https://en.wikipedia.org/wiki/Internet_Information_Services)에서 생성되는 PFX 파일과 같이 일반적으로 PKCS#12 형식의 데이터를 포함하고 있다.)
+
+[PKCS#7](https://en.wikipedia.org/wiki/PKCS7)은 데이터를 서명 또는 암호화하는 것(공식적으로는 "감싸는 것(envelop)")에 대한 표준이다. 서명 데이터를 검증하기 위해서 인증서가 필요하기 때문에 SignedData 구조에서 이 둘을 포함하는 것이 가능하다. .p7c 파일은 서명할 데이터가 없는 SignedData 구조이다.<sup>[[인용문 필요]](https://en.wikipedia.org/wiki/Wikipedia:Citation_needed)</sup>
+
+[PKCS#12](https://en.wikipedia.org/wiki/PKCS12)는 개인 정보 교환(PFX, personal information exchange) 표준에서 발전하여 하나의 파일로 공개 객체와 개인 객체를 교환하는 데 사용된다.<sup>[[인용문 필요]](https://en.wikipedia.org/wiki/Wikipedia:Citation_needed)</sup>
+
 ## 인증서 체인과 상호인증
+**인증서 체인**([RFC 5280](https://tools.ietf.org/html/rfc5280)에서 정의하고 있는 "인증 경로(certification path)"와 동일한 개념)은 인증서 목록이며, 이 목록 끝에는 1개 이상의 [CA](https://en.wikipedia.org/wiki/Certificate_authority) 인증서가 있다(보통 최종 엔티티 인증서로 시작해서, 스스로를 서명한 CA 인증서로 끝난다). 인증서 체인은 아래와 같은 특징이 있다.
+
+1. (마지막 인증서를 제외한) 각 인증서의 발급자는 목록의 다음 인증서 소유자와 일치한다.
+2. (마지막 인증서를 제외한) 각 인증서는 체인의 다음 인증서 개인키로 서명되어야 한다. 즉, 어떤 인증서의 서명은 다음 인증서가 포함하는 공개키를 사용해서 검증할 수 있다.
+3. 목록의 마지막 인증서는 [트러스트 앵커(trust anchor)](https://en.wikipedia.org/wiki/Trust_anchor)이다. 신뢰할 수 있는 절차를 통해 전달되었으므로 신뢰할 수 있는 인증서이다.
+
+인증서 체인은 대상 인증서(체인의 첫 번째 인증서)에 포함된 공개키(PK)와 데이터가 실질적으로 인증서 소유자의 것이 맞는지 검증하기 위해 사용된다. 이를 명백하게 하기 위해서 대상 인증서의 서명은 다음 인증서가 포함하고 있는 PK를 사용하여 검증한다. 다음 인증서의 서명은 그 다음 인증서를 사용하여 인증하며 이를 체인의 마지막 인증서에 도달할 때까지 계속한다. 마지막 인증서는 트러스트 앵커이므로 이에 성공적으로 도달하였다는 것은 대상 인증서가 신뢰할 수 있다는 것을 증명하는 것이다.
+
+앞 단락의 설명은 [RFC 5280](https://tools.ietf.org/html/rfc5280)<sup id="footkey10-1">[[10]](#footnote10)</sup>에 정의된 [인증 경로 유효성 검사 프로세스](https://en.wikipedia.org/wiki/Certification_path_validation_algorithm)를 단순화 한 것이다. RFC 5280은 인증서의 유효 기간 검증, [CRL](https://en.wikipedia.org/wiki/Revocation_list) 조회 등과 같은 추가적인 확인절차가 포함되어 있다.
+
+인증서 체인을 만들고 검증하는 방법을 검토할 때 특정 인증서가 전혀 다른 인증서 체인에 일부로 속할 수 있다는 것을 유의해야 한다(여기에서 모든 인증서는 유효하다). 이는 동일한 주체와 그의 공개키에 대한 여러 CA 인증서가 생성될 수 있고 이 CA 인증서들이 서로 다른 CA의 서로 다른 개인키들로 서명되거나 동일한 CA의 서로 다른 개인키들로 서명될 수 있기 때문이다. 그래서 단일 X.509 인증서는 하나의 발급자와 하나의 CA 서명만을 가질 수 있음에도 불구하고 완전히 다른 인증서 체인을 만들어 2개 이상의 인증서에 유효하게 연결할 수 있다. 이는 PKI와 다른 어플리케이션 간의 상호인증에 매우 중요한 부분이다.<sup>[[11]](#footnote11)</sup> 아래 예시를 보자.
+
+아래 다이어그램들에서,
+ - 각 상자는 인증서를 나타낸다. 인증서의 소유자는 굵은 글씨로 표현된다.
+ - A → B는 "B가 A를 서명하였다"(더 정확하게는 "B에 포함된 공개키에 대응하는 비밀키로 A를 서명하였다")는 것을 의미한다.
+ - 동일한 색의 인증서는 동일한 공개키를 포함한다. (흰색이거나 투명한 색의 인증서 제외)
+
 ###	예시 1: 두 PKI간에 최상위 인증기관(CA) 수준의 상호인증
 <p align="center">
   <img src=".images/350px-Cross-certification_diagram.svg.png"/>
@@ -266,5 +312,13 @@ Certificate:[14]
 1. <sup id="footnote1">_[a](#footkey1-1) [b](#footkey1-2)_</sup> [RFC 4158](https://tools.ietf.org/html/rfc4158)
 2. <sup id="footnote2"></sup>["CA:IncludedCAs - MozillaWiki"](https://wiki.mozilla.org/CA:IncludedCAs). wiki.mozilla.org. Retrieved 2017-01-17.
 3. <sup id="footnote3"></sup>["Bug 110161 - (ocspdefault) enable OCSP by default"](https://bugzilla.mozilla.org/show_bug.cgi?id=110161). Retrieved 2016-03-17.
+4. <sup id="footnote4"></sup>[RFC 5280 section 4.2, retrieved 12 February 2013](http://tools.ietf.org/html/rfc5280#section-4.2,)
+5. <sup id="footnote5"></sup>[RFC 1422](http://www.ietf.org/rfc/rfc1422)
+6. <sup id="footnote6"></sup>["RFC 5280, Section 'Basic Constraints'"](http://tools.ietf.org/html/rfc5280#section-4.2.1.9).
+7. <sup id="footnote7"></sup>["'RFC 5280, Section 'Key Usage'"](http://tools.ietf.org/html/rfc5280#section-4.2.1.3).
+8. <sup id="footnote8"></sup>["RFC 5280, Section 'Extended Key Usage'"](http://tools.ietf.org/html/rfc5280#section-4.2.1.12).
+9. <sup id="footnote9"></sup>[All About Certificate Extensions](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS/nss_tech_notes/nss_tech_note3)
+10. <sup id="footnote10">_[a](#footkey10-1) [b](#footkey10-2)_</sup> "Certification Path Validation". [Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile](http://tools.ietf.org/html/rfc5280#page-71). Network Working Group. 2008.
+11. <sup id="footnote11"></sup>Lloyd, Steve (September 2002). [Understanding Certification Path Construction](http://www.oasis-pki.org/pdfs/Understanding_Path_construction-DS2.pdf) (PDF). PKI Forum.
 
 ## 외부 링크
