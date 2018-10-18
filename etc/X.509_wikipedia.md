@@ -1,11 +1,20 @@
 # X.509
+
+#### 출처
+https://en.wikipedia.org/wiki/X.509
+
+#### 번역
+ssosso
+(잘못된 번역은 [여기](https://github.com/ssosso/Docs-Reference-Translation/blob/master/README.md) 참고)
+
+<br/><br/>
 [암호학](https://en.wikipedia.org/wiki/Cryptography)에서 **X.509**는 [공개키 인증서](https://en.wikipedia.org/wiki/Public_key_certificate)의 형식을 정의하는 표준이다. X.509 인증서는 [웹](https://en.wikipedia.org/wiki/World_Wide_Web) 탐색을 위한 보안 프로토콜 HTTPS<sup id="footkey1-1">[[1]](#footnote1)</sup>의 기반인 [TLS/SSL](https://en.wikipedia.org/wiki/Transport_Layer_Security)을 포함한 많은 인터넷 프로토콜에서 사용한다. [전자 서명](https://en.wikipedia.org/wiki/Electronic_signature)과 같은 오프라인 어플리케이션에서도 사용한다. X.509 인증서는 공개키와 ID(호스트명, 조직, 개인)를 포함하며 [인증기관](https://en.wikipedia.org/wiki/Certificate_authority)에서 서명하거나 자체적으로 서명한다. 신뢰할 수 있는 인증기관이 인증서에 서명하거나 다른 방법으로 유효성 검사를 한 경우, 해당 인증서를 보유한 사용자는 인증서에 포함된 공개키를 사용하여 다른 사람과 보안 통신을 설정할 수도 있고 해당 [개인키](https://en.wikipedia.org/wiki/Private_key)로 [디지털 서명한](https://en.wikipedia.org/wiki/Digital_signature) 문서를 검증할 수도 있다.
 
 인증서 자체 형식 외에도 X.509는 더 이상 유효하지 않은 인증서 정보를 배포하는 수단인 인증서 [폐기 목록](https://en.wikipedia.org/wiki/Revocation_list)과 중간 CA 인증서로 인증서에 서명할 수 있도록 하는 [인증서 경로 유효성 알고리즘](https://en.wikipedia.org/wiki/Certification_path_validation_algorithm)을 명시하고 있다. 다른 인증서에 의해 차례로 서명되어 결국 [트러스트 앵커<sup>trust anchor</sup>](https://en.wikipedia.org/wiki/Trust_anchor)에 도달할 수 있도록 하는 것이다.
 
 X.509는 [국제 통신 연합](https://en.wikipedia.org/wiki/International_Telecommunication_Union)의 표준화 부문(ITU-T)에서 정의히며, 또 다른 ITU-T 표준인 [ASN.1](https://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One)를 기반으로 한다.
 
-#### Contents
+#### 목차
 1. [역사와 사용법](#역사와-사용법)
 2. [인증서](#인증서)
     1. [인증서 구조](#인증서-구조)
