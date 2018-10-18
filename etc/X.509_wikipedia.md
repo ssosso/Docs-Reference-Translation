@@ -5,6 +5,7 @@ https://en.wikipedia.org/wiki/X.509
 
 ### 번역
 ssosso
+
 (잘못된 번역은 [여기](https://github.com/ssosso/Docs-Reference-Translation/blob/master/README.md) 참고)
 
 <br/><br/>
@@ -93,7 +94,7 @@ RFC 5280(그리고 이것의 이전 모델)은 인증서 사용 방법을 나타
 
 - 기본적인 제약 { id-ce 19 }<sup>[[6]](#footnote6)</sup>는 인증서가 CA에 속하는지 나타내는 데 사용한다.
 - 키 사용법인 { id-ce 15 }<sup>[[7]](#footnote7)</sup>는 인증서에 포함된 공개키를 사용하여 수행할 수 있는 암호화 작업을 지정하는 비트맵을 제공한다. 예를 들어 해당 키는 서명에는 사용되지만 암호문에는 사용되지 않아야 함을 나타낼 수 있다.
-- 확장한 키 사용법인 { id-ce 37 }<sup>[[8]](#footnote8)</sup>은 인증서가 포함하고 있는 공개키의 목적을 나타내기 위해 일반적으로 말단 인증서에서 사용된다. 이 확장(Extension)은 OID 목록을 포함하며 각 OID는 허용할 수 있는 사용을 나타낸다. 예를 들어 { id-pkix 3 1 }은 TLS/SSL 연결에서 서버측이 키를 사용할 수 있음을 나타내며, { id-pkix 3 4 }는 전자 메일 보안에 키를 사용할 수 있음을 나타낸다.
+- 확장된 키 사용법인 { id-ce 37 }<sup>[[8]](#footnote8)</sup>은 인증서가 포함하고 있는 공개키의 목적을 나타내기 위해 일반적으로 말단 인증서에서 사용된다. 이 확장(Extension)은 OID 목록을 포함하며 각 OID는 허용할 수 있는 사용을 나타낸다. 예를 들어 { id-pkix 3 1 }은 TLS/SSL 연결에서 서버측이 키를 사용할 수 있음을 나타내며, { id-pkix 3 4 }는 전자 메일 보안에 키를 사용할 수 있음을 나타낸다.
 
 일반적으로 인증서에 사용을 제한하는 확장(Extension)이 여러 개 있는 경우, 적합하게 사용하도록 모든 제한을 만족해야 한다. RFC 5280에는 keyUsage와 extendedKeyUsage를 포함하는 인증서의 구체적인 예시가 나와 있다. 이런 경우, 두 확장은 모두 처리 되어야 하며, 인증서는 두 가지 확장을 만족하는 경우에만 사용할 수 있다. 예를 들어 [NSS](https://en.wikipedia.org/wiki/Network_Security_Services)는 두 가지 확장을 모두 사용하여 인증서의 용법을 지정하고 있다.<sup>[[9]](#footnote9)</sup>
 
@@ -319,15 +320,26 @@ Certificate:[14]
 ## 참고 문헌
 
 1. <sup id="footnote1">_[a](#footkey1-1) [b](#footkey1-2)_</sup> [RFC 4158](https://tools.ietf.org/html/rfc4158)
-2. <sup id="footnote2"></sup>["CA:IncludedCAs - MozillaWiki"](https://wiki.mozilla.org/CA:IncludedCAs). wiki.mozilla.org. Retrieved 2017-01-17.
-3. <sup id="footnote3"></sup>["Bug 110161 - (ocspdefault) enable OCSP by default"](https://bugzilla.mozilla.org/show_bug.cgi?id=110161). Retrieved 2016-03-17.
-4. <sup id="footnote4"></sup>[RFC 5280 section 4.2, retrieved 12 February 2013](http://tools.ietf.org/html/rfc5280#section-4.2,)
+2. <sup id="footnote2"></sup>["CA:IncludedCAs - MozillaWiki"](https://wiki.mozilla.org/CA:IncludedCAs). wiki.mozilla.org. 2017-01-17 검색함.
+3. <sup id="footnote3"></sup>["Bug 110161 - (ocspdefault) enable OCSP by default"](https://bugzilla.mozilla.org/show_bug.cgi?id=110161). 2016-03-17 검색함.
+4. <sup id="footnote4"></sup>[RFC 5280 4.2절](http://tools.ietf.org/html/rfc5280#section-4.2,) 2013-02-12 검색함
 5. <sup id="footnote5"></sup>[RFC 1422](http://www.ietf.org/rfc/rfc1422)
-6. <sup id="footnote6"></sup>["RFC 5280, Section 'Basic Constraints'"](http://tools.ietf.org/html/rfc5280#section-4.2.1.9).
-7. <sup id="footnote7"></sup>["'RFC 5280, Section 'Key Usage'"](http://tools.ietf.org/html/rfc5280#section-4.2.1.3).
-8. <sup id="footnote8"></sup>["RFC 5280, Section 'Extended Key Usage'"](http://tools.ietf.org/html/rfc5280#section-4.2.1.12).
-9. <sup id="footnote9"></sup>[All About Certificate Extensions](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS/nss_tech_notes/nss_tech_note3)
-10. <sup id="footnote10">_[a](#footkey10-1) [b](#footkey10-2)_</sup> "Certification Path Validation". [Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile](http://tools.ietf.org/html/rfc5280#page-71). Network Working Group. 2008.
-11. <sup id="footnote11"></sup>Lloyd, Steve (September 2002). [Understanding Certification Path Construction](http://www.oasis-pki.org/pdfs/Understanding_Path_construction-DS2.pdf) (PDF). PKI Forum.
+6. <sup id="footnote6"></sup>["RFC 5280, '기본 제약'절"](http://tools.ietf.org/html/rfc5280#section-4.2.1.9).
+7. <sup id="footnote7"></sup>["'RFC 5280, '키 사용법'절"](http://tools.ietf.org/html/rfc5280#section-4.2.1.3).
+8. <sup id="footnote8"></sup>["RFC 5280, '확장된 키 사용법'절"](http://tools.ietf.org/html/rfc5280#section-4.2.1.12).
+9. <sup id="footnote9"></sup>[인증서 확장(Extension)에 대한 모든 것](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS/nss_tech_notes/nss_tech_note3)
+10. <sup id="footnote10">_[a](#footkey10-1) [b](#footkey10-2)_</sup> "인증 경로 유효성 검사". [인터넷  X.509 공개키 구조 인증서와 인증서 폐기 목록(CRL) 프로필](http://tools.ietf.org/html/rfc5280#page-71). Network Working Group. 2008.
+11. <sup id="footnote11"></sup>Lloyd, Steve (2002년 9월). [인증 경로 구조 이해하기](http://www.oasis-pki.org/pdfs/Understanding_Path_construction-DS2.pdf) (PDF). PKI Forum.
 
 ## 외부 링크
+- [ITU-T의 X.509 표준](http://www.itu.int/rec/T-REC-X.509/en)
+- Peter Gutmann의 글:
+  - [PKI 개요](https://www.cs.auckland.ac.nz/~pgut001/pubs/pkitutorial.pdf)
+  - [X.509 구현 정보와 스타일 가이드](https://www.cs.auckland.ac.nz/~pgut001/pubs/x509guide.txt)
+- ["RSA Labs의 Crypto FAQ"](https://web.archive.org/web/20061230232250/http://www.rsasecurity.com/rsalabs/node.asp?id=2155). 2006-12-30에 [원본](http://www.rsasecurity.com/rsalabs/node.asp?id=2155)으로부터 보관해놓음.
+- [Sun Inc. - 안전한 코드 가이드라인](http://java.sun.com/security/seccodeguide.html)
+- [RFC 4158](https://tools.ietf.org/html/rfc4158) - 인터넷  X.509 공개키 구조: 인증 경로(Certification Path) 만들기
+- [CSR 디코더와 인증서 디코더](http://certlogik.com/decoder) - 인코딩된 CSR 또는 인증서를 디코딩하고 검사하는 데 사용할 수 있음.
+- [phpseclib: X.509 디코더](http://phpseclib.sourceforge.net/x509/decoder.php) - X.509의 ASN.1 설명에 해당하는 키를 가진 하나의 연속된 배열로 디코딩한다.
+- [SeSeLe](http://www.actiu.net/sesele/), 자체 서명 SSL 인증서용 Wizard.
+- Microsoft TechNet [전자 인증서 이해하기](https://technet.microsoft.com/en-us/library/bb123848(v=exchg.65).aspx)
