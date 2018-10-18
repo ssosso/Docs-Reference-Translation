@@ -1,9 +1,9 @@
 # X.509
 
-#### 출처
+### 출처
 https://en.wikipedia.org/wiki/X.509
 
-#### 번역
+### 번역
 ssosso
 (잘못된 번역은 [여기](https://github.com/ssosso/Docs-Reference-Translation/blob/master/README.md) 참고)
 
@@ -14,7 +14,7 @@ ssosso
 
 X.509는 [국제 통신 연합](https://en.wikipedia.org/wiki/International_Telecommunication_Union)의 표준화 부문(ITU-T)에서 정의히며, 또 다른 ITU-T 표준인 [ASN.1](https://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One)를 기반으로 한다.
 
-#### 목차
+### 목차
 1. [역사와 사용법](#역사와-사용법)
 2. [인증서](#인증서)
     1. [인증서 구조](#인증서-구조)
