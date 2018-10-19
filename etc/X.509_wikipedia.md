@@ -129,7 +129,7 @@ X.509 인증서에는 일반적으로 사용되는 몇가지 파일 확장자가
  - 동일한 색의 인증서는 동일한 공개키를 포함한다. (흰색이거나 투명한 색의 인증서 제외)
 
 ###	예시 1: 두 PKI간에 최상위 인증기관(CA) 수준의 상호인증
-PKI 2에 속하는 사용자 인증서가 PKI1에 의해 신뢰할 수 있도록 하기 위해서, CA1은 CA2의 공개키를 포함하는 인증서(cert2.1)을 생성한다. 현재 (초록색인) cert2와 cert2.1 둘다 동일한 소유자의 것이며, 그의 공개키를 가지므로 cert2.2, 즉 User2에 대한 두 가지 유효한 체인이 생긴다. "cert2.2 → cert2"와 "cert2.2 → cert2.1 → cert1"이다.
+PKI 2에 속하는 사용자 인증서가 PKI1에 의해 신뢰할 수 있도록 하기 위해서, CA1은 CA2의 공개키를 포함하는 인증서(cert2.1)을 생성한다.<sup>[[12]](#footnote12)</sup> 현재 (초록색인) cert2와 cert2.1 둘다 동일한 소유자의 것이며, 그의 공개키를 가지므로 cert2.2, 즉 User2에 대한 두 가지 유효한 체인이 생긴다. "cert2.2 → cert2"와 "cert2.2 → cert2.1 → cert1"이다.
 
 앞선 바와 비슷하게 CA2도 CA1의 공개키를 포함하는 인증서(cert1.1)를 생성할 수 있다. 그러면 PKI 1에 속하는 사용자 인증서, 즉 User 1은 PKI 2에 의해 신뢰할 수 있다.
 <br/>
@@ -141,6 +141,10 @@ PKI 2에 속하는 사용자 인증서가 PKI1에 의해 신뢰할 수 있도록
 </p>
 
 ###	예시 2: CA 인증서 갱신
+[인증 경로 구조 이해하기](http://www.oasis-pki.org/pdfs/Understanding_Path_construction-DS2.pdf). PKI 포럼. 2002년 9월. "이전 서명 키 쌍에서 새로운 서명 키 쌍으로 적절하게 전환하려면, CA는 새로운 개인 서명키로 서명한 기존 공개키를 포함하는 인증서와, 기존 개인 서명키로 서명한 새로운 공개키를 포함하는 인증서를 발급해야 한다. 이 두 인증서 모두 스스로 발급한 것이 되지만 [스스로를 서명하는 것](https://en.wikipedia.org/wiki/Self-signed_certificate)은 아니다. 스스로를 서명한 인증서 2개가 추가적으로 있다는 것에 주목하라(하나는 기존 것, 하나는 새로운 것)."
+
+cert1과 cert3 둘 다 동일한 공개키(기존 것)를 포함하기 때문에 cert5에 대한 두 가지 유효한 인증서 체인이 생긴다. "cert5 → cert1"과 "cert5 → cert3 → cert2"이다. cert6에 대해서도 비슷하다. 이는 새로운 CA 키로 전환하는 동안 새로운 최상위 CA 인증서 또는 기존 최상위 CA 인증서를 가진 사람은 cert5 같은 기존 사용자 인증서와 cert6 같은 새로운 사용자 인증서를 항상 신뢰할 수 있도록 한다.<sup>[[13]](#footnote13)</sup>
+<br/>
 
 <p align="center">
   <img src=".images/CA_certificate_renewal.png"/>
@@ -326,16 +330,19 @@ Certificate:[14]
 ## 참고 문헌
 
 1. <sup id="footnote1">_[a](#footkey1-1) [b](#footkey1-2)_</sup> [RFC 4158](https://tools.ietf.org/html/rfc4158)
-2. <sup id="footnote2"></sup>["CA:IncludedCAs - MozillaWiki"](https://wiki.mozilla.org/CA:IncludedCAs). wiki.mozilla.org. 2017-01-17 검색함.
+2. <sup id="footnote2"></sup>["CA:IncludedCAs - MozillaWiki"](https://wiki.mozilla.org/CA:IncludedCAs). _wiki.mozilla.org_. 2017-01-17 검색함.
 3. <sup id="footnote3"></sup>["Bug 110161 - (ocspdefault) enable OCSP by default"](https://bugzilla.mozilla.org/show_bug.cgi?id=110161). 2016-03-17 검색함.
 4. <sup id="footnote4"></sup>[RFC 5280 4.2절](http://tools.ietf.org/html/rfc5280#section-4.2,) 2013-02-12 검색함
 5. <sup id="footnote5"></sup>[RFC 1422](http://www.ietf.org/rfc/rfc1422)
 6. <sup id="footnote6"></sup>["RFC 5280, '기본 제약'절"](http://tools.ietf.org/html/rfc5280#section-4.2.1.9).
-7. <sup id="footnote7"></sup>["'RFC 5280, '키 사용법'절"](http://tools.ietf.org/html/rfc5280#section-4.2.1.3).
+7. <sup id="footnote7"></sup>["RFC 5280, '키 사용법'절"](http://tools.ietf.org/html/rfc5280#section-4.2.1.3).
 8. <sup id="footnote8"></sup>["RFC 5280, '확장된 키 사용법'절"](http://tools.ietf.org/html/rfc5280#section-4.2.1.12).
 9. <sup id="footnote9"></sup>[인증서 확장(Extension)에 대한 모든 것](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS/nss_tech_notes/nss_tech_note3)
-10. <sup id="footnote10">_[a](#footkey10-1) [b](#footkey10-2)_</sup> "인증 경로 유효성 검사". [인터넷  X.509 공개키 구조 인증서와 인증서 폐기 목록(CRL) 프로필](http://tools.ietf.org/html/rfc5280#page-71). Network Working Group. 2008.
-11. <sup id="footnote11"></sup>Lloyd, Steve (2002년 9월). [인증 경로 구조 이해하기](http://www.oasis-pki.org/pdfs/Understanding_Path_construction-DS2.pdf) (PDF). PKI 포럼.
+10. <sup id="footnote10">_[a](#footkey10-1) [b](#footkey10-2)_</sup> "인증 경로 유효성 검사". _[인터넷  X.509 공개키 구조 인증서와 인증서 폐기 목록(CRL) 프로필](http://tools.ietf.org/html/rfc5280#page-71)_. Network Working Group. 2008.
+11. <sup id="footnote11"></sup>Lloyd, Steve (2002년 9월). _[인증 경로 구조 이해하기](http://www.oasis-pki.org/pdfs/Understanding_Path_construction-DS2.pdf)_ (PDF). PKI 포럼.
+12. "최상위 CA들 간 상호인증". _[적법한 종속 배포 시나리오](https://technet.microsoft.com/en-us/library/cc785267(v=ws.10).aspx)_. Microsoft. 2009년 8월.
+13. Nash; Duane; Joseph; Brink (2001). "키와 인증서 라이프 사이클. CA 인증서 갱신". _PKI: E-Security 구현하고 관리하기_. RSA Press - Osborne/McGraw-Hill. [ISBN](https://en.wikipedia.org/wiki/International_Standard_Book_Number) [0-07-213123-3](https://en.wikipedia.org/wiki/Special:BookSources/0-07-213123-3).
+
 
 ## 외부 링크
 - [ITU-T의 X.509 표준](http://www.itu.int/rec/T-REC-X.509/en)
