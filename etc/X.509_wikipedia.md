@@ -129,6 +129,11 @@ X.509 인증서에는 일반적으로 사용되는 몇가지 파일 확장자가
  - 동일한 색의 인증서는 동일한 공개키를 포함한다. (흰색이거나 투명한 색의 인증서 제외)
 
 ###	예시 1: 두 PKI간에 최상위 인증기관(CA) 수준의 상호인증
+PKI 2에 속하는 사용자 인증서가 PKI1에 의해 신뢰할 수 있도록 하기 위해서, CA1은 CA2의 공개키를 포함하는 인증서(cert2.1)을 생성한다. 현재 (초록색인) cert2와 cert2.1 둘다 동일한 소유자의 것이며, 그의 공개키를 가지므로 cert2.2, 즉 User2에 대한 두 가지 유효한 체인이 생긴다. "cert2.2 → cert2"와 "cert2.2 → cert2.1 → cert1"이다.
+
+앞선 바와 비슷하게 CA2도 CA1의 공개키를 포함하는 인증서(cert1.1)를 생성할 수 있다. 그러면 PKI 1에 속하는 사용자 인증서, 즉 User 1은 PKI 2에 의해 신뢰할 수 있다.
+<br/>
+
 <p align="center">
   <img src=".images/350px-Cross-certification_diagram.svg.png"/>
   <br/>
@@ -136,6 +141,7 @@ X.509 인증서에는 일반적으로 사용되는 몇가지 파일 확장자가
 </p>
 
 ###	예시 2: CA 인증서 갱신
+
 <p align="center">
   <img src=".images/CA_certificate_renewal.png"/>
   <br/>
@@ -329,7 +335,7 @@ Certificate:[14]
 8. <sup id="footnote8"></sup>["RFC 5280, '확장된 키 사용법'절"](http://tools.ietf.org/html/rfc5280#section-4.2.1.12).
 9. <sup id="footnote9"></sup>[인증서 확장(Extension)에 대한 모든 것](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS/nss_tech_notes/nss_tech_note3)
 10. <sup id="footnote10">_[a](#footkey10-1) [b](#footkey10-2)_</sup> "인증 경로 유효성 검사". [인터넷  X.509 공개키 구조 인증서와 인증서 폐기 목록(CRL) 프로필](http://tools.ietf.org/html/rfc5280#page-71). Network Working Group. 2008.
-11. <sup id="footnote11"></sup>Lloyd, Steve (2002년 9월). [인증 경로 구조 이해하기](http://www.oasis-pki.org/pdfs/Understanding_Path_construction-DS2.pdf) (PDF). PKI Forum.
+11. <sup id="footnote11"></sup>Lloyd, Steve (2002년 9월). [인증 경로 구조 이해하기](http://www.oasis-pki.org/pdfs/Understanding_Path_construction-DS2.pdf) (PDF). PKI 포럼.
 
 ## 외부 링크
 - [ITU-T의 X.509 표준](http://www.itu.int/rec/T-REC-X.509/en)
