@@ -153,6 +153,7 @@ cert1과 cert3 둘 다 동일한 공개키(기존 것)를 포함하기 때문에
 </p>
 
 ## 샘플 X.509 인증서
+이는 wikipedia.org와 여러 다른 위키피디아 웹사이트에서 사용하는 디코딩된 X.509 인증서의 예시이다. Issuer(발급자) 필드에 있는 [GlobalSign](https://en.wikipedia.org/wiki/GlobalSign)가 발급한 인증서이다. 인증서의 Subject(소유자) 필드는 조직 Wikipedia가 기입되어 있고 Subject Alternative Name(소유자 대체 이름) 필드는 사용 가능한 호스트명이 기입되어 있다. Subject Public Key Info(소유자 공개키 정보) 필드는 [ECDSA](https://en.wikipedia.org/wiki/ECDSA) 공개키를 포함한다. 반면에 맨 아래 서명은 GlobalSign의 [RSA](https://en.wikipedia.org/wiki/RSA_(cryptosystem)) 개인키로 생성되어 있다.
 
 ###	최종 엔티티 인증서
 
@@ -212,12 +213,16 @@ Certificate:
          ...
 ```
 
+최종 엔티티 인증서를 검증하기 위해서는 최종 엔티티 인증서의 발급자와 기관 키 식별자가 일치하는 중간 인증서가 필요하다.
 
-Issuer | C=BE, O=GlobalSign nv-sa, CN=GlobalSign Organization Validation CA - SHA256 - G2
+Issuer<br/>(발급자) | C=BE, O=GlobalSign nv-sa, CN=GlobalSign Organization Validation CA - SHA256 - G2
 --- | ---
-**Authority Key Identifier** | **96:DE:61:F1:BD:1C:16:29:53:1C:C0:CC:7D:3B:83:00:40:E6:1A:7C**
+**Authority Key Identifier<br/>(기관 키 식별자)** | **96:DE:61:F1:BD:1C:16:29:53:1C:C0:CC:7D:3B:83:00:40:E6:1A:7C**
+
+TLS 연결에서 잘 설정되어 있는 서버는 핸드쉐이크 과정 중 중간 인증서를 제공한다. 하지만 최종 엔티티 인증서에서 "CA 발급자" URL을 가져와서 중간 인증서를 검색할 수도 있다.
 
 ###	중간 인증서
+이는 [인증기관](https://en.wikipedia.org/wiki/Certificate_authority)에 속한 중간 인증서의 예시이다. 이 인증서는 앞선 최종 엔티티 인증서를 서명했으며 곧 나올 루트 인증서에 의해 서명되었다. 중간 인증서의 Subject(소유자) 필드는 중간 인증서가 서명한 최종 엔티티 인증서의 Issuer(발급자) 필드와 일치한다는 사실에 주목해라. 또한, 중간 인증서의 Subject Key Identifier(소유자 키 식별자) 필드는 최종 엔티티 인증서의 Authority Key Identifier(기관 키 식별자) 필드와 일치한다.
 
 ```
 Certificate:
@@ -266,9 +271,12 @@ Certificate:
 ```
 
 ###	루트 인증서
+이는 [인증기관](https://en.wikipedia.org/wiki/Certificate_authority)을 나타낸다고 볼 수 있는 [스스로 서명한](https://en.wikipedia.org/wiki/Self-signed_certificate) 루트 인증서의 예시이다. 루트 인증서의 Issuer(발급자)와 Subject(소유자) 피리드는 동일하며, 서명은 자신의 공개키로 검증이 가능하다. 신뢰 체인의 유효성 검사는 이 인증서에서 끝난다. 유효성 검사 프로그램은 이 루트 인증서를 [믿을 수 있는 저장소](https://en.wikipedia.org/wiki/Public_key_certificate#Root_programs)에 저장하며, TLS 연결에서 최종 엔티티 인증서에 대한 신뢰를 보장할 수 있다. 루트 인증서를 신뢰할 수 없는 곳에 저장한다면 최종 엔티티 인증서는 신뢰를 보장할 수가 없다.
+
+<sup>[[14]](#footnote14-1)</sup>
 
 ```
-Certificate:[14]
+Certificate:
     Data:
         Version: 3 (0x2)
         Serial Number:
@@ -342,6 +350,7 @@ Certificate:[14]
 11. <sup id="footnote11"></sup>Lloyd, Steve (2002년 9월). _[인증 경로 구조 이해하기](http://www.oasis-pki.org/pdfs/Understanding_Path_construction-DS2.pdf)_ (PDF). PKI 포럼.
 12. "최상위 CA들 간 상호인증". _[적법한 종속 배포 시나리오](https://technet.microsoft.com/en-us/library/cc785267(v=ws.10).aspx)_. Microsoft. 2009년 8월.
 13. Nash; Duane; Joseph; Brink (2001). "키와 인증서 라이프 사이클. CA 인증서 갱신". _PKI: E-Security 구현하고 관리하기_. RSA Press - Osborne/McGraw-Hill. [ISBN](https://en.wikipedia.org/wiki/International_Standard_Book_Number) [0-07-213123-3](https://en.wikipedia.org/wiki/Special:BookSources/0-07-213123-3).
+14. <sup id="footnote10">_[a](#footkey14-1) [b](#footkey14-2)_</sup> ["웹 서비스 보안 X.509 토큰 프로필 버전 1.1.1"](https://docs.oasis-open.org/wss-m/wss/v1.1.1/os/wss-x509TokenProfile-v1.1.1-os.html). docs.oasis-open.org. 2017-03-14 검색함.
 
 
 ## 외부 링크
