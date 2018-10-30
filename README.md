@@ -16,6 +16,7 @@
 2. Slick User Manual (3.1.1) - **ing**
 3. Hyperledger fabric document (v1.3) - **ing**
 4. X.509 wikipedia - **ing**
+5. Privacy Enhancement for Internet Electronic Mail(PEM, RFC1421) - **ing**
 
 ## 번역 참여자
 @ssosso
