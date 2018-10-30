@@ -135,7 +135,7 @@ PKI 2에 속하는 사용자 인증서가 PKI1에 의해 신뢰할 수 있도록
 <br/>
 
 <p align="center">
-  <img src=".images/350px-Cross-certification_diagram.svg.png"/>
+  <img src=".images/X.509_wikipedia_1.png"/>
   <br/>
   <b>예시 1: 두 PKI간의 상호인증</b>
 </p>
@@ -147,7 +147,7 @@ cert1과 cert3 둘 다 동일한 공개키(기존 것)를 포함하기 때문에
 <br/>
 
 <p align="center">
-  <img src=".images/CA_certificate_renewal.png"/>
+  <img src=".images/X.509_wikipedia_2.png"/>
   <br/>
   <b>예시 2: CA 인증서 갱신</b>
 </p>
