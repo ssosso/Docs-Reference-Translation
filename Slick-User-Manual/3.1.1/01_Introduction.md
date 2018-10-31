@@ -48,11 +48,11 @@ Slick은 데이터베이스 접근 시점과 전송할 데이터를 완전히 �
 
 함수형 프로그래밍을 위한 Slick의 FRM 접근법의 주요 이점은 다음과 같다.
 
-- 사전 최적화를 통한 효율성
+### 사전 최적화를 통한 효율성
 
 FRM은 보다 효율적인 방식으로 연결한다. ORM과는 다르게 데이터베이스와의 통신을 사전 최적화하는 과정이 있다. ORM보다 FRM을 사용하면 어플리케이션을 보다 빠르게 구동할 수 있다.
 
-- 타입 안정성을 통한 지루한 이슈해결 문제 해결
+### 타입 안정성을 통한 지루한 이슈해결 문제 해결
 
 FRM은 데이터베이스 쿼리를 만들 때 타입 안정성을 가진다. 컴파일러가 타입이 지정되지 않은 문자열에서 에러를 찾는 데 필요한 지루한 타입이슈를 자동 타입찾기를 통해 해결하기 때문에 개발자들은 더욱 생산적일 수 있게 된다.
 
@@ -87,14 +87,14 @@ GettingStartedOverview.scala:89: type mismatch;
                             ^
 ```
 
-- 쿼리 작성을 위한 더 생산적이고 구성가능한 모델
+### 쿼리 작성을 위한 더 생산적이고 구성가능한 모델
 
 FRM은 쿼리를 생성하기 위한 구성가능한 모델을 제공한다. 이 모델은 아주 자연스러운 모델이다. 조각들을 모아 하나의 쿼리를 생성하고 코드 전반에 걸쳐 이 조각들을 재사용한다.
 
 ```Scala
-// Create a query for coffee names with a price less than 10, sorted by name
+// 10보다 가격이 싼 커피의 이름을 정렬하여 조회하는 쿼리를 생성한다.
 coffees.filter(_.price < 10.0).sortBy(_.name).map(_.name)
-// The generated SQL is equivalent to:
+// 생성된 SQL은 아래와 동일한 의미이다.
 // select name from COFFEES where PRICE < 10.0 order by NAME
 ```
 
@@ -102,6 +102,7 @@ coffees.filter(_.price < 10.0).sortBy(_.name).map(_.name)
 
 
 ## 반응형 어플리케이션
+Slick은 비동기, 비차단 어플리케이션 설계를 하기 쉽게 한다. 그리고 [반응형 메니페스토<sup>Reactive Manifesto</sup>](http://www.reactivemanifesto.org/)에 따라 어플리케이션을 만드는 것을 지원한다.
 
 ## 일반 SQL 문자열 지원
 
